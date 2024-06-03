@@ -2,8 +2,8 @@ package com.example.planetasapp_raqs;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -15,6 +15,18 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewInfo;
     private ImageView imageViewPlanet;
 
+    private String[] planetNames;
+    private int[] planetImages = {
+            R.drawable.mercurio,
+            R.drawable.venus,
+            R.drawable.tierra,
+            R.drawable.marte,
+            R.drawable.jupiter,
+            R.drawable.saturno,
+            R.drawable.urano,
+            R.drawable.neptuno
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,24 +36,22 @@ public class MainActivity extends AppCompatActivity {
         textViewInfo = findViewById(R.id.textViewInfo);
         imageViewPlanet = findViewById(R.id.imageViewPlanet);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.planets_array, android.R.layout.simple_spinner_item);
+        planetNames = getResources().getStringArray(R.array.planets_array);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, planetNames, planetImages);
         spinnerPlanets.setAdapter(adapter);
 
         spinnerPlanets.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedPlanet = (String) parentView.getItemAtPosition(position);
+                String selectedPlanet = planetNames[position];
                 textViewInfo.setText(getPlanetInfo(selectedPlanet));
-                imageViewPlanet.setImageResource(getPlanetImage(selectedPlanet));
+                imageViewPlanet.setImageResource(planetImages[position]);
+                applyFadeTransition(imageViewPlanet);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // No hacer nada
             }
         });
     }
@@ -69,26 +79,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private int getPlanetImage(String planet) {
-        switch (planet) {
-            case "Mercurio":
-                return R.drawable.mercurio;
-            case "Venus":
-                return R.drawable.venus;
-            case "Tierra":
-                return R.drawable.tierra;
-            case "Marte":
-                return R.drawable.marte;
-            case "Júpiter":
-                return R.drawable.jupiter;
-            case "Saturno":
-                return R.drawable.saturno;
-            case "Urano":
-                return R.drawable.urano;
-            case "Neptuno":
-                return R.drawable.neptuno;
-            default:
-                return 0;
-        }
+    private void applyFadeTransition(ImageView imageView) {
+        AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+        fadeIn.setDuration(500);
+        imageView.startAnimation(fadeIn);
     }
 }
