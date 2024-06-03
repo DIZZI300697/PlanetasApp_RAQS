@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner spinnerPlanets;
     private TextView textViewInfo;
+    private ImageView imageViewPlanet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,34 +22,29 @@ public class MainActivity extends AppCompatActivity {
 
         spinnerPlanets = findViewById(R.id.spinnerPlanets);
         textViewInfo = findViewById(R.id.textViewInfo);
-
+        imageViewPlanet = findViewById(R.id.imageViewPlanet);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.planets_array, android.R.layout.simple_spinner_item);
 
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-
         spinnerPlanets.setAdapter(adapter);
-
 
         spinnerPlanets.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-
                 String selectedPlanet = (String) parentView.getItemAtPosition(position);
-
                 textViewInfo.setText(getPlanetInfo(selectedPlanet));
+                imageViewPlanet.setImageResource(getPlanetImage(selectedPlanet));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-
+                // No hacer nada
             }
         });
     }
-
 
     private String getPlanetInfo(String planet) {
         switch (planet) {
@@ -69,6 +66,29 @@ public class MainActivity extends AppCompatActivity {
                 return "Neptuno es conocido por sus fuertes vientos y tormentas.";
             default:
                 return "";
+        }
+    }
+
+    private int getPlanetImage(String planet) {
+        switch (planet) {
+            case "Mercurio":
+                return R.drawable.mercurio;
+            case "Venus":
+                return R.drawable.venus;
+            case "Tierra":
+                return R.drawable.tierra;
+            case "Marte":
+                return R.drawable.marte;
+            case "Júpiter":
+                return R.drawable.jupiter;
+            case "Saturno":
+                return R.drawable.saturno;
+            case "Urano":
+                return R.drawable.urano;
+            case "Neptuno":
+                return R.drawable.neptuno;
+            default:
+                return 0;
         }
     }
 }
