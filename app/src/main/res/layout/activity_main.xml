@@ -14,15 +14,17 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:popupBackground="@android:color/white"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/textViewInfo"
         style="@style/PlanetInfoTextView"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/imageViewPlanet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPlanets"/>
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPlanets" />
 
     <ImageView
         android:id="@+id/imageViewPlanet"

@@ -32,38 +32,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Referencias a los elementos del layout
         spinnerPlanets = findViewById(R.id.spinnerPlanets);
         textViewInfo = findViewById(R.id.textViewInfo);
         imageViewPlanet = findViewById(R.id.imageViewPlanet);
 
         planetNames = getResources().getStringArray(R.array.planets_array);
 
-        // Usar CustomSpinnerAdapter para el spinner
         CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, planetNames, planetImages);
         spinnerPlanets.setAdapter(adapter);
 
-        // Configurar el listener del spinner
         spinnerPlanets.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Obtener el planeta seleccionado
                 String selectedPlanet = planetNames[position];
-                // Mostrar información sobre el planeta
                 textViewInfo.setText(getPlanetInfo(selectedPlanet));
-                // Mostrar imagen del planeta con animación
                 imageViewPlanet.setImageResource(planetImages[position]);
                 applyFadeTransition(imageViewPlanet);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // No hacer nada
             }
         });
     }
 
-    // Método para obtener información sobre el planeta
     private String getPlanetInfo(String planet) {
         switch (planet) {
             case "Mercurio":
@@ -87,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Método para aplicar transición de desvanecimiento
     private void applyFadeTransition(ImageView imageView) {
         AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
         fadeIn.setDuration(500);
