@@ -1,12 +1,12 @@
 <resources>
     <string-array name="planets_array">
-        <item>Mercurio</item>
-        <item>Venus</item>
-        <item>Tierra</item>
-        <item>Marte</item>
-        <item>Júpiter</item>
-        <item>Saturno</item>
-        <item>Urano</item>
-        <item>Neptuno</item>
+        <item>@string/mercurio</item>
+        <item>@string/venus</item>
+        <item>@string/tierra</item>
+        <item>@string/marte</item>
+        <item>@string/jupiter</item>
+        <item>@string/saturno</item>
+        <item>@string/urano</item>
+        <item>@string/neptuno</item>
     </string-array>
 </resources>

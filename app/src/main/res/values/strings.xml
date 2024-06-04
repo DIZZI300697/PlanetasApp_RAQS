@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">PlanetasApp_RAQS</string>
+    <string name="app_name">PlanetasApp</string>
+    <string name="mercurio">Mercurio</string>
+    <string name="venus">Venus</string>
+    <string name="tierra">Tierra</string>
+    <string name="marte">Marte</string>
+    <string name="jupiter">Júpiter</string>
+    <string name="saturno">Saturno</string>
+    <string name="urano">Urano</string>
+    <string name="neptuno">Neptuno</string>
+
+    <string name="mercurio_desc">Mercurio es el planeta más cercano al Sol y el más pequeño del sistema solar.</string>
+    <string name="venus_desc">Venus tiene una atmósfera muy densa y es el planeta más caliente.</string>
+    <string name="tierra_desc">La Tierra es el único planeta conocido con vida.</string>
+    <string name="marte_desc">Marte es conocido como el planeta rojo y tiene el volcán más grande del sistema solar.</string>
+    <string name="jupiter_desc">Júpiter es el planeta más grande y tiene una gran tormenta llamada la Gran Mancha Roja.</string>
+    <string name="saturno_desc">Saturno es conocido por sus impresionantes anillos.</string>
+    <string name="urano_desc">Urano tiene un eje de rotación inclinado y rota de lado.</string>
+    <string name="neptuno_desc">Neptuno es conocido por sus fuertes vientos y tormentas.</string>
 </resources>

@@ -32,53 +32,62 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Referencias a los elementos del layout
         spinnerPlanets = findViewById(R.id.spinnerPlanets);
         textViewInfo = findViewById(R.id.textViewInfo);
         imageViewPlanet = findViewById(R.id.imageViewPlanet);
 
         planetNames = getResources().getStringArray(R.array.planets_array);
 
+        // Usar CustomSpinnerAdapter para el spinner
         CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, planetNames, planetImages);
         spinnerPlanets.setAdapter(adapter);
 
+        // Configurar el listener del spinner
         spinnerPlanets.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Obtener el planeta seleccionado
                 String selectedPlanet = planetNames[position];
+                // Mostrar información sobre el planeta
                 textViewInfo.setText(getPlanetInfo(selectedPlanet));
+                // Mostrar imagen del planeta con animación
                 imageViewPlanet.setImageResource(planetImages[position]);
                 applyFadeTransition(imageViewPlanet);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
+                // No hacer nada
             }
         });
     }
 
+    // Método para obtener información sobre el planeta
     private String getPlanetInfo(String planet) {
         switch (planet) {
             case "Mercurio":
-                return "Mercurio es el planeta más cercano al Sol y el más pequeño del sistema solar.";
+                return getString(R.string.mercurio_desc);
             case "Venus":
-                return "Venus tiene una atmósfera muy densa y es el planeta más caliente.";
+                return getString(R.string.venus_desc);
             case "Tierra":
-                return "La Tierra es el único planeta conocido con vida.";
+                return getString(R.string.tierra_desc);
             case "Marte":
-                return "Marte es conocido como el planeta rojo y tiene el volcán más grande del sistema solar.";
+                return getString(R.string.marte_desc);
             case "Júpiter":
-                return "Júpiter es el planeta más grande y tiene una gran tormenta llamada la Gran Mancha Roja.";
+                return getString(R.string.jupiter_desc);
             case "Saturno":
-                return "Saturno es conocido por sus impresionantes anillos.";
+                return getString(R.string.saturno_desc);
             case "Urano":
-                return "Urano tiene un eje de rotación inclinado y rota de lado.";
+                return getString(R.string.urano_desc);
             case "Neptuno":
-                return "Neptuno es conocido por sus fuertes vientos y tormentas.";
+                return getString(R.string.neptuno_desc);
             default:
                 return "";
         }
     }
 
+    // Método para aplicar transición de desvanecimiento
     private void applyFadeTransition(ImageView imageView) {
         AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
         fadeIn.setDuration(500);
